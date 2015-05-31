@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GrowPlant.cs" />
      <Compile Include="Assets\PlantHolder.cs" />
      <Compile Include="Assets\PlantLife.cs" />
      <Compile Include="Assets\PlayerMovement.cs" />
