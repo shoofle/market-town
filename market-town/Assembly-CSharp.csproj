@@ -46,11 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GrowPlant.cs" />
-     <Compile Include="Assets\PlantHolder.cs" />
-     <Compile Include="Assets\PlantLife.cs" />
-     <Compile Include="Assets\PlayerMovement.cs" />
-     <Compile Include="Assets\SoilQuality.cs" />
+     <Compile Include="Assets\Farming Shit\PlantGrowth.cs" />
+     <Compile Include="Assets\Farming Shit\PlantHolder.cs" />
+     <Compile Include="Assets\Player Stuff\PlayerMovement.cs" />
+     <Compile Include="Assets\Player Stuff\PlayerPlantingScriptWahoo.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
