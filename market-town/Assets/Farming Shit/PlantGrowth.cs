@@ -7,12 +7,17 @@ public class PlantGrowth : MonoBehaviour
 	public float secondsBetweenGrowth = 60f;
 	
 	// The state of the plant; 0 is seed
-	public enum GrowthState { Seed=0, Seedling=1, Growing=2, Adult=3 };
+	public enum GrowthState
+	{
+		Seed=0,
+		Seedling=1,
+		Growing=2,
+		Adult=3 }
+	;
 	public GrowthState state = GrowthState.Seed;
 
 	// The sprites to use to render things
 	public Sprite[] sprites;
-	
 	private DateTime timeAtStateChange;
 	private SpriteRenderer spriteRenderer;
 	
@@ -28,13 +33,14 @@ public class PlantGrowth : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
 	{
-		TimeSpan diff = DateTime.Now - timeAtStateChange;
-		if (diff.Seconds > secondsBetweenGrowth) {
-			timeAtStateChange = DateTime.Now;
+		if (((int)state) < 3) {
+			TimeSpan diff = DateTime.Now - timeAtStateChange;
+			if (diff.Seconds > secondsBetweenGrowth) {
+				timeAtStateChange = DateTime.Now;
+				state = (GrowthState)(((int)state) + 1);
 
-			state = (GrowthState)(((int)state) + 1);
-
-			spriteRenderer.sprite = sprites [(int)state];
+				spriteRenderer.sprite = sprites [(int)state];
+			}
 		}
 	}
 }
