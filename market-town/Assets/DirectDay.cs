@@ -65,7 +65,6 @@ public class DirectDay : MonoBehaviour
 		TimeSpan diff = DateTime.Now - timeAtHourChange;
 
 		MinutesOfHour = diff.Seconds;
-		Debug.Log (diff.Minutes + ":" + diff.Seconds);
 		if (diff.Minutes == 1) {
 			timeAtHourChange = DateTime.Now;
 

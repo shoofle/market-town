@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\DirectDay.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Clock.cs">
     <Files>
-      <File FileName="Assets\DirectDay.cs" Line="30" Column="2" />
-      <File FileName="Assets\Farming Shit\PlantGrowth.cs" Line="8" Column="2" />
+      <File FileName="Assets\Clock.cs" Line="8" Column="11" />
+      <File FileName="Assets\DirectDay.cs" Line="67" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
