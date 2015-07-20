@@ -1,38 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class DirectDay : MonoBehaviour
 {
-	#region public
+	public float MinutesPerMinute = 60F;
+
 	// Hour of the day for Plants to access
-	public int HourOfDay;
+	public float currentTime = 4F;
 
-	// Minute of the Hour for Clock to access
-	public int MinutesOfHour;
+	public float DawnLength = 1;
 
-	// The state of the day
-	public enum DayState
-	{
-		Dawn=4,
-		Daybreak = 5,
-		Day=6,
-		Sunset=20,
-		Evening = 21,
-		Midnight=22 }
-	;
-	public int DaylightHours;
-	#endregion
+	public float DuskLength = 1;
 
+	private float SunriseTime = 6;
+	public Color SunriseColor = new Color (1F, 0.957F, 0.839F);
 
-	// The color the sky should be at this hour of the day
-	private Color[] colorOfDay;
+	public Color MorningColor = new Color (1F, 0.957F, 0.839F);
+
+	private float NoonTime = 12;
+	public Color NoonColor = new Color (1F, 0.925F, 0.839F);
+	
+	public Color AfternoonColor = new Color (1F, 0.839F, 0.918F);
+	
+	private float SunsetTime = 18;
+	public Color SunsetColor = new Color(1F, 0.839F, 1F);
+
+	public Color NightColor = new Color(0F, 0F, 0F);
 
 	// Time taken from computer at last Hour change
 	private DateTime timeAtHourChange;
 
 	// The Directional Lights Light component
 	private Light lightComponent;
+
+	private float[] times;
+	private Color[] colors;
 
 
 
@@ -42,38 +46,51 @@ public class DirectDay : MonoBehaviour
 		// Initialization 
 		lightComponent = GetComponent<Light> ();
 
-		timeAtHourChange = DateTime.Now;
+		times = new float[] {
+			0,
+			SunriseTime - (DawnLength / 2),
+			SunriseTime,
+			SunriseTime + (DawnLength / 2),
+			NoonTime,
+			SunsetTime - (DuskLength / 2),
+			SunsetTime,
+			SunsetTime + (DuskLength / 2),
+			24
+		};
 
-		colorOfDay = new Color[6];
-		colorOfDay [1] = new Color (0.937F, 0.839F, 1F); // 2 to 4 Dawn
-		colorOfDay [2] = new Color (1F, 0.957F, 0.839F); // 4 to 6 a Daybreak
-		colorOfDay [3] = new Color (1F, 0.925F, 0.839F); // 6 to 8 a Day
-		colorOfDay [8] = new Color (1F, 0.839F, 0.918F); // 4 to 6 p Sunset
-		colorOfDay [9] = new Color (0.976F, 0.839F, 1F); // 6 to 8 p Evening
-		colorOfDay [11] = new Color (0.9F, 0.8F, 1F); // 10 to 12 p d Midnight
-
-		// Day starts at 4, unless you sleep in or stay up through the night
-		HourOfDay = 4;
-		MinutesOfHour = 0;
-
+		colors = new Color[] {
+			NightColor,
+			NightColor,
+			SunriseColor,
+			MorningColor,
+			NoonColor,
+			AfternoonColor,
+			SunsetColor,
+			NightColor,
+			NightColor
+		};
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
 		// Time Updating
-		TimeSpan diff = DateTime.Now - timeAtHourChange;
+		currentTime += (Time.deltaTime / 3600) * MinutesPerMinute;
 
-		MinutesOfHour = diff.Seconds;
-		if (diff.Minutes == 1) {
-			timeAtHourChange = DateTime.Now;
+		if (currentTime > 24) {
+			currentTime = 0;
+		}
 
-			HourOfDay++;
-
-			if (HourOfDay > 23) {
-				HourOfDay = 0;
+		int prevIndex = 0;
+		for (int index = 0; index < times.Length - 1; index++) {
+			if (currentTime > times[index] && currentTime < times[index+1]) {
+				prevIndex = index;
 			}
 		}
 
+		Color previousColor = colors[prevIndex];
+		Color nextColor = colors[prevIndex+1];
+		float tFactor = (currentTime - times[prevIndex]) / (times[prevIndex + 1] - times[prevIndex]);
+		lightComponent.color = Color.Lerp(previousColor, nextColor, tFactor);
 	}
 }
