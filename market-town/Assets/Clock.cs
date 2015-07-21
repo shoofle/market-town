@@ -7,12 +7,12 @@ public class Clock : MonoBehaviour {
 	// ??
 	void OnGUI ()
 	{
-		DateTime time = DateTime.Now;
 		GameObject go = GameObject.Find("DirectionalLight");
 		DirectDay light = go.GetComponent<DirectDay>();
 
-		string hour = LeadingZero (light.HourOfDay);
-		string minute = LeadingZero (light.MinutesOfHour);
+		float t = light.currentTime;
+		string hour = LeadingZero ((int) Math.Floor(t));
+		string minute = LeadingZero ((int) ((t - Math.Floor (t)) * 60));
 
 		GUILayout.Label(hour +":"+ minute);
 	}

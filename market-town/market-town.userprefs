@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Calendar.cs">
     <Files>
       <File FileName="Assets\DirectDay.cs" Line="32" Column="11" />
@@ -7,6 +8,9 @@
       <File FileName="Assets\Calendar.cs" Line="26" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+=======
+  <MonoDevelop.Ide.Workbench />
+>>>>>>> d7139942da03427dcacb394505cb96f974e028b0
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
