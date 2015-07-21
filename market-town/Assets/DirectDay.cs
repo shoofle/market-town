@@ -92,5 +92,7 @@ public class DirectDay : MonoBehaviour
 		Color nextColor = colors[prevIndex+1];
 		float tFactor = (currentTime - times[prevIndex]) / (times[prevIndex + 1] - times[prevIndex]);
 		lightComponent.color = Color.Lerp(previousColor, nextColor, tFactor);
+
+		transform.RotateAround(transform.position, transform.right, (360F/24F)*Time.deltaTime);
 	}
 }
