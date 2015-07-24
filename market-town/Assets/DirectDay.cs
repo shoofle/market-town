@@ -7,6 +7,8 @@ public class DirectDay : MonoBehaviour
 {
 	public float MinutesPerMinute = 60F;
 
+	public bool NewDay = false;
+
 	// Hour of the day for Plants to access
 	public float currentTime = 4F;
 
@@ -79,6 +81,7 @@ public class DirectDay : MonoBehaviour
 
 		if (currentTime > 24) {
 			currentTime = 0;
+			NewDay = true;
 		}
 
 		int prevIndex = 0;
