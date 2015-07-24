@@ -9,6 +9,20 @@ public class Calendar : MonoBehaviour {
 	
 	// Minute of the Hour for Clock to access
 	public string Season;
+
+	// Current Temperature
+	public int CurrentTemperature;
+
+	// Current Precipitation
+	public int CurrentPrecipitation;
+
+	private enum Precipitations
+	{
+		None = 0,
+		Rain = 1
+	};
+
+
 	#endregion
 
 	#region private
@@ -24,6 +38,8 @@ public class Calendar : MonoBehaviour {
 		light = go.GetComponent<DirectDay>();
 		DayOfSeason = 1;
 		Season = "Spring";
+		CurrentTemperature = 50;
+		CurrentPrecipitation = 0;
 	}
 	
 	// Update is called once per frame
