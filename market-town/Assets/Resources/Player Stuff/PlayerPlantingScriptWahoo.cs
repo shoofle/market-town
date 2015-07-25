@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class PlayerPlantingScriptWahoo : MonoBehaviour
@@ -8,9 +8,13 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 	public HashSet<PlantHolder> availableDirts = new HashSet<PlantHolder> ();
 	public PlantHolder currentlyTargetedDirt;
 
+	public EnergyThingie energyslider; 
+
 	void Start ()
 	{
 		reticle = GetComponent<SphereCollider> ();
+		energyslider = GetComponent<EnergyThingie>();
+
 	}
 
 	// Update is called once per frame
@@ -29,12 +33,16 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 		}
 
 		// Attempt to plant the plant we're holding.
-		if (Input.GetButton ("Fire1") && (plantToPlant != null) && (currentlyTargetedDirt != null)) {
+		if (Input.GetButton ("Fire1") 
+		    && (plantToPlant != null) 
+		    && (currentlyTargetedDirt != null
+		    && energyslider.slider.value > 0)) {
 			// Check if the currently targeted dirt is available for planting
 			if (currentlyTargetedDirt.IsEmpty ()) {
 				// Make a new plant from the selected prefab and plant it
 				GameObject plant = Instantiate (plantToPlant);
 				currentlyTargetedDirt.InsertPlant (plant);
+				energyslider.successfulAction = true;
 			}
 		}
 	}

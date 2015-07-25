@@ -48,7 +48,6 @@ public class Clock : MonoBehaviour
 		guiTime = GameObject.Find ("TimeLabel");
 		guiTemp = GameObject.Find ("TemperatureLabel");
 
-		Debug.Log (guiTemp.GetType ());
 	}
 	
 	// Update is called once per frame
