@@ -23,6 +23,7 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 		// Figure out what's the dirt closest to the center of the reticle.
 		float closestDistance = float.PositiveInfinity;
 		currentlyTargetedDirt = null;
+
 		foreach (PlantHolder target in availableDirts) {
 			float newDistance = Vector3.Distance (reticle.transform.position, target.transform.position);
 
@@ -37,6 +38,7 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 		    && (plantToPlant != null) 
 		    && (currentlyTargetedDirt != null
 		    && energyslider.slider.value > 0)) {
+
 			// Check if the currently targeted dirt is available for planting
 			if (currentlyTargetedDirt.IsEmpty ()) {
 				// Make a new plant from the selected prefab and plant it

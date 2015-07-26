@@ -7,7 +7,6 @@ public class Clock : MonoBehaviour
 	private GameObject directGo;
 	private GameObject guiTime;
 	private GameObject guiTemp;
-
 	private DirectDay light;
 	private Calendar calendar;
 
@@ -18,16 +17,15 @@ public class Clock : MonoBehaviour
 		string hour = LeadingZero ((int)Math.Floor (t));
 		string minute = LeadingZero ((int)((t - Math.Floor (t)) * 60));
 
-		// Debug.Log("in on gui");
-		// GUIText text = guiTime.GetComponent<GUIText> ();
-		// text.text = hour + ":" + minute 
-		// 	+ " " + calendar.Season 
-		// 	+ " " + calendar.DayOfSeason;
+		UnityEngine.UI.Text text = guiTime.GetComponent<UnityEngine.UI.Text> ();
+		text.text = hour + ":" + minute 
+			+ " " + calendar.Season 
+			+ " " + calendar.DayOfSeason;
 
-		// text =  guiTemp.GetComponent<GUIText> ();
+		text = guiTemp.GetComponent<UnityEngine.UI.Text> ();
 
-		// text.text = calendar.CurrentTemperature + "°F"
-		// 	+ " " + calendar.CurrentPrecipitation;
+		text.text = calendar.CurrentTemperature + "°F"
+			+ " " + calendar.CurrentPrecipitation;
 	}
 
 	// Adds Zeros to number if needed
@@ -39,8 +37,6 @@ public class Clock : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Debug.Log("in start gui");
-
 		directGo = GameObject.Find ("DirectionalLight");
 		light = directGo.GetComponent<DirectDay> ();
 		calendar = directGo.GetComponent<Calendar> ();
