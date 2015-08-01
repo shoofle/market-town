@@ -37,13 +37,12 @@ public class ClickResponseScript : MonoBehaviour
 			}
 			else if(inventory.heldItem.item == null) //currently HAND
 			{
-				Debug.Log("Somethings wrong");
+				Debug.Log("Trying to use the hand item but, well, shit, man, we don't have any behavior");
 				// hand behavior
 			}
 			else if (inventory.heldItem.item.tag == "Plant") { // Tag Enum Somewhere?
-				Debug.Log("Planter called");
-				planter.plantToPlant = inventory.heldItem.item;
-				planter.performAction = true;
+				Debug.Log("Trying to plant a plant!");
+				planter.AttemptToPlant (inventory.heldItem.item);
 			}
 		}
 	}

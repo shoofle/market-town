@@ -3,18 +3,17 @@ using System.Collections.Generic;
 
 public class PlayerPlantingScriptWahoo : MonoBehaviour
 {
-	public GameObject plantToPlant; // A prefab of what to plant.
-	public SphereCollider reticle;
-	public HashSet<PlantHolder> availableDirts = new HashSet<PlantHolder> ();
-	public PlantHolder currentlyTargetedDirt;
-	public EnergyThingie energyslider;
-	public Inventory inventory;
-	public bool performAction;
+	private SphereCollider reticle;
+	public float energyCostPerAction = 0.1F;
+	private HashSet<PlantHolder> availableDirts = new HashSet<PlantHolder> ();
+	private PlantHolder currentlyTargetedDirt;
+	private EnergyThingie energySlider;
+	private Inventory inventory;
 
 	void Start ()
 	{
 		reticle = GetComponent<SphereCollider> ();
-		energyslider = GetComponent<EnergyThingie> ();
+		energySlider = GetComponent<EnergyThingie> ();
 		inventory = GetComponent<Inventory> ();
 	}
 
@@ -33,32 +32,28 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 				closestDistance = newDistance;
 			}
 		}
-	
-		//trying to get the firing elsewhere
-		// Attempt to plant the plant we're holding.
-		if (performAction) {
-			performAction = false;
-			AttemptPlant ();
-		}
 	}
 
-	void AttemptPlant ()
+	public void AttemptToPlant (GameObject plant)
 	{
-		if ((plantToPlant != null) 
-			&& (currentlyTargetedDirt != null
-			&& energyslider.slider.value > 0)) {
+		if (plant != null // We've gotta be planting a plant, to plant.
+			&& currentlyTargetedDirt != null // There's gotta be a dirt in the reticle.
+		    && currentlyTargetedDirt.IsEmpty() // The dirt can't be occupied.
+			&& energySlider.currentEnergy > 0) { // There's gotta be energy for it.
 				
-			// Check if the currently targeted dirt is available for planting
-			if (currentlyTargetedDirt.IsEmpty ()) {
-				// Make a new plant from the selected prefab and plant it
-				GameObject plant = Instantiate (plantToPlant);
-				currentlyTargetedDirt.InsertPlant (plant);
-				energyslider.successfulAction = true;
-				inventory.performAction = true;
-			}
+			// Make a new plant from the selected prefab and plant it.
+			currentlyTargetedDirt.InsertPlant (Instantiate (plant));
+
+			// Decrease the player's energy accordingly. 
+			// Because we defined getters and setters in EnergyThingie, we don't need to even do function calls.
+			energySlider.currentEnergy -= energyCostPerAction;
+
+			// Remove the item from the inventory.
+			inventory.DepleteCurrentItem();
 		}
 	}
-
+	
+	// These two methods keep track of which dirt objects are within range to be planted in.
 	void OnTriggerEnter (Collider other)
 	{
 		PlantHolder dirt = other.GetComponent <PlantHolder> ();

@@ -27,30 +27,25 @@ public class Inventory : MonoBehaviour
 	void Start ()
 	{
 		//for testing
-		GameObject go = GameObject.Find ("AllPlants");
-		Plants plants = go.GetComponent<Plants> ();
+		Plants plants = GameObject.Find ("AllPlants").GetComponent<Plants> ();
 		GameObject bluepluto = plants.plants [0];
-		//end testing
+
 		inventoryContents = new inventoryObject[inventorySize];
 		inventoryContents [0] = new inventoryObject{stackSize = 2, item = bluepluto};
 
-		handItem = new inventoryObject{
-			item = null
-			,stackSize = -1
-		};
+		handItem = new inventoryObject{ item = null, stackSize = -1};
 
-		heldItem = new inventoryObject{ stackSize = 8, item = bluepluto};
+		heldItem = new inventoryObject{ item = bluepluto, stackSize = 8};
+		// let's be real, all of this is for testing at the moment
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	public void DepleteCurrentItem ()
 	{
-		if (performAction) {
-			performAction = false;
-			if (heldItem.stackSize > 0)
-				heldItem.stackSize --;
-			else if (heldItem.stackSize == 0)
-				heldItem = handItem;
+		if (heldItem.stackSize > 0) {
+			heldItem.stackSize --;
+		} else if (heldItem.stackSize == 0) {
+			heldItem = handItem;
 		}
 	}
 }
