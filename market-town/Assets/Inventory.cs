@@ -20,8 +20,7 @@ public class Inventory : MonoBehaviour
 
 	// The thing you are holding
 	public inventoryObject heldItem;
-	public inventoryObject handItem;
-	public bool performAction;
+	public inventoryObject handItem = new inventoryObject{ item = null, stackSize = -1};
 
 	// Use this for initialization
 	void Start ()
@@ -32,8 +31,6 @@ public class Inventory : MonoBehaviour
 
 		inventoryContents = new inventoryObject[inventorySize];
 		inventoryContents [0] = new inventoryObject{stackSize = 2, item = bluepluto};
-
-		handItem = new inventoryObject{ item = null, stackSize = -1};
 
 		heldItem = new inventoryObject{ item = bluepluto, stackSize = 8};
 		// let's be real, all of this is for testing at the moment

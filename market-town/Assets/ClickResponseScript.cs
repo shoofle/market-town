@@ -4,10 +4,10 @@ using System.Collections;
 public class ClickResponseScript : MonoBehaviour
 {
 
-	public Inventory inventory;
+	private Inventory inventory;
 
 	// Response scripts to change value of
-	public PlayerPlantingScriptWahoo planter;
+	private PlayerPlantingScriptWahoo planter;
 
 
 	// thought about it but since the response scripts 
