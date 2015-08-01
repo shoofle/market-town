@@ -1,10 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Player Stuff\PlayerPlantingScriptWahoo.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Inventory.cs">
     <Files>
-      <File FileName="Assets\Inventory.cs" Line="42" Column="21" />
-      <File FileName="Assets\EnergyThingie.cs" Line="8" Column="19" />
-      <File FileName="Assets\Resources\Player Stuff\PlayerPlantingScriptWahoo.cs" Line="43" Column="7" />
+      <File FileName="Assets\Inventory.cs" Line="21" Column="34" />
+      <File FileName="Assets\ClickResponseScript.cs" Line="39" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

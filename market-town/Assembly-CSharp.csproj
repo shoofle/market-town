@@ -46,12 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ClickResponseScript.cs" />
      <Compile Include="Assets\EnergyThingie.cs" />
+     <Compile Include="Assets\Farming Shit\PlantGrowth.cs" />
+     <Compile Include="Assets\Farming Shit\PlantHolder.cs" />
      <Compile Include="Assets\Inventory.cs" />
-     <Compile Include="Assets\Resources\Farming Shit\PlantGrowth.cs" />
-     <Compile Include="Assets\Resources\Farming Shit\PlantHolder.cs" />
-     <Compile Include="Assets\Resources\Player Stuff\PlayerMovement.cs" />
-     <Compile Include="Assets\Resources\Player Stuff\PlayerPlantingScriptWahoo.cs" />
+     <Compile Include="Assets\Plants.cs" />
+     <Compile Include="Assets\Player Stuff\PlayerMovement.cs" />
+     <Compile Include="Assets\Player Stuff\PlayerPlantingScriptWahoo.cs" />
      <Compile Include="Assets\Time Stuff\Calendar.cs" />
      <Compile Include="Assets\Time Stuff\Clock.cs" />
      <Compile Include="Assets\Time Stuff\DirectDay.cs" />

@@ -1,48 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : MonoBehaviour
+{
 
 	// A list of things
-	public inventoryObject[][] inventoryContents;
+	public inventoryObject[] inventoryContents;
 
 	// Things can be stacked
-	private class inventoryObject{
-		public string name;
+	public class inventoryObject
+	{
 		public int stackSize; // can also indicate objects that cant be used up?
+		public GameObject item;
 	}
 
 	// Max stack size
 	public int maxStackSize;
-	public int inventorySizeX;
-	public int inventorySizeY;
+	public int inventorySize;
 
 	// The thing you are holding
 	public inventoryObject heldItem;
 	public inventoryObject handItem;
-
-	public bool itemUsed;
+	public bool performAction;
 
 	// Use this for initialization
-	void Start () {
-		inventoryContents = new inventoryObject[inventorySizeX] [inventorySizeY];
-		inventoryContents [0] [0] = new inventoryObject{name = "Potato", stackSize = 2 };
+	void Start ()
+	{
+		//for testing
+		GameObject go = GameObject.Find ("AllPlants");
+		Plants plants = go.GetComponent<Plants> ();
+		GameObject bluepluto = plants.plants [0];
+		//end testing
+		inventoryContents = new inventoryObject[inventorySize];
+		inventoryContents [0] = new inventoryObject{stackSize = 2, item = bluepluto};
 
 		handItem = new inventoryObject{
-			name = "Hands"
+			item = null
 			,stackSize = -1
 		};
 
-		heldItem = new inventoryObject{name = "Blue Pluto Seeds", stackSize = 8 };
+		heldItem = new inventoryObject{ stackSize = 8, item = bluepluto};
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (itemUsed) {
-			itemUsed = false;
-			if(heldItem.stackSize > 0)
+	void Update ()
+	{
+		if (performAction) {
+			performAction = false;
+			if (heldItem.stackSize > 0)
 				heldItem.stackSize --;
-			else if(heldItem.stackSize == 0)
+			else if (heldItem.stackSize == 0)
 				heldItem = handItem;
 		}
 	}

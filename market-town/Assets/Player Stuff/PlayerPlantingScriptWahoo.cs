@@ -7,14 +7,15 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 	public SphereCollider reticle;
 	public HashSet<PlantHolder> availableDirts = new HashSet<PlantHolder> ();
 	public PlantHolder currentlyTargetedDirt;
-
-	public EnergyThingie energyslider; 
+	public EnergyThingie energyslider;
+	public Inventory inventory;
+	public bool performAction;
 
 	void Start ()
 	{
 		reticle = GetComponent<SphereCollider> ();
-		energyslider = GetComponent<EnergyThingie>();
-
+		energyslider = GetComponent<EnergyThingie> ();
+		inventory = GetComponent<Inventory> ();
 	}
 
 	// Update is called once per frame
@@ -32,19 +33,28 @@ public class PlayerPlantingScriptWahoo : MonoBehaviour
 				closestDistance = newDistance;
 			}
 		}
-
+	
+		//trying to get the firing elsewhere
 		// Attempt to plant the plant we're holding.
-		if (Input.GetButton ("Fire1") 
-		    && (plantToPlant != null) 
-		    && (currentlyTargetedDirt != null
-		    && energyslider.slider.value > 0)) {
+		if (performAction) {
+			performAction = false;
+			AttemptPlant ();
+		}
+	}
 
+	void AttemptPlant ()
+	{
+		if ((plantToPlant != null) 
+			&& (currentlyTargetedDirt != null
+			&& energyslider.slider.value > 0)) {
+				
 			// Check if the currently targeted dirt is available for planting
 			if (currentlyTargetedDirt.IsEmpty ()) {
 				// Make a new plant from the selected prefab and plant it
 				GameObject plant = Instantiate (plantToPlant);
 				currentlyTargetedDirt.InsertPlant (plant);
 				energyslider.successfulAction = true;
+				inventory.performAction = true;
 			}
 		}
 	}
