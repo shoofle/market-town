@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\ClickResponseScript.cs" />
      <Compile Include="Assets\EnergyThingie.cs" />
+     <Compile Include="Assets\ExitInventory.cs" />
      <Compile Include="Assets\Farming Shit\PlantGrowth.cs" />
      <Compile Include="Assets\Farming Shit\PlantHolder.cs" />
      <Compile Include="Assets\Inventory.cs" />
