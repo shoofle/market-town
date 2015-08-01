@@ -40,7 +40,7 @@ public class ClickResponseScript : MonoBehaviour
 				Debug.Log("Somethings wrong");
 				// hand behavior
 			}
-			else if ((inventory.heldItem.item.GetComponent("PlantGrownth") as PlantGrowth)!= null) { 
+			else if (inventory.heldItem.item.tag == "Plant") { // Tag Enum Somewhere?
 				Debug.Log("Planter called");
 				planter.plantToPlant = inventory.heldItem.item;
 				planter.performAction = true;
